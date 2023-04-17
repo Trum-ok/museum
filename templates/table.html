@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Музей "Наша Перловка"</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" type="image/png" href="../static/img/logo_mus.png">
+</head>
+<body>
+<nav>
+    <div class="logo-container">
+        <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+    </div>
+    <ul>
+        <li><a href="/index/">Главная</a></li>
+        <li><a href="/table/">Таблица</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Электронная книга поступлений</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Кол-во</th>
+                <th>Способ получения</th>
+                <th>Место обнаружения</th>
+                <th>Описание</th>
+                <th>Назначение</th>
+                <th>Инв. №</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>&copy; Наша Перловка 2023</p>
+</footer>
+</body>
+</html>
