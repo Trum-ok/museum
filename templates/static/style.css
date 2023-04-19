@@ -13,9 +13,11 @@
 
 /* Global styles */
 * {
-    box-sizing: border-box;
     margin: 0;
-    padding: 0;
+}
+
+::selection {
+    background: var(--accent-100);
 }
 
 
@@ -25,40 +27,9 @@ body {
     line-height: 1.5;
     color: var(--text-100);
     background-color: var(--bg-100);
-}
-
-header {
-    background-image: url("img/mus.png");
-    background-size: cover;
-    /*background-position: center center;*/
-    height: 200px;
-    position: relative;
-    /*background-size: cover;*/
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*height: 100vh;*/
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(20px);
-    opacity: 0.8;
-}
-
-header h1 {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: white;
-    font-size: 40px;
-    text-shadow: 2px 2px var(--text-200);
+    /*display: grid;*/
+    /*grid-template-rows: 1fr auto;*/
+    /*min-height: 100vh;*/
 }
 
 
@@ -79,83 +50,68 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary-100);
 }
 
-p {
-    margin-bottom: 10px;
-}
-
 /* Header styles */
 header {
-    /*background-image: url('header-bg.jpg');*/
+    background-image: url("img/mus.png");
     background-size: cover;
+    /*height: 200px;*/
+    position: relative;
     background-position: center;
     padding: 60px;
     text-align: center;
     color: #fff;
+    display: block;
+    justify-content: center;
+    align-items: center;
 }
 
 header h1 {
     margin: 0;
-    /*color: var(--text-100);*/
-    /*font-size: 6vw;*/
     text-align: center;
-    max-width: 80%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 48px;
     text-shadow: 2px 2px var(--primary-100);
+    position: relative;
+    z-index: 1;
+    color: white;
 }
 
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    opacity: 0.82;
+}
+
+
+header h3 {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px var(--text-200);
+}
 
 
 /* Navigation styles */
 nav {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-100);
+    background-color: var(--primary-200);
     /*padding: 10px;*/
-    padding:5px 200px 5px 10px;
+    padding: 5px 200px 5px 10px;
+    padding-block: 15px;
 
-}
-
-@media screen and (max-width: 375px) {
-    nav {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        padding: 10px;
-    }
-
-    nav a {
-        display: block;
-        text-align: center;
-        padding: 10px;
-    }
-
-    .menu-icon {
-        display: block;
-    }
-
-    .menu-items {
-        display: none;
-    }
-
-    nav .logo {
-        margin-right: auto;
-    }
-}
-
-.logo-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.logo-container img {
-    height: 50px;
-    object-fit: contain;
-    margin-right: 10px;
 }
 
 nav ul {
@@ -167,6 +123,9 @@ nav ul {
 
 nav li {
     margin-left: 20px;
+    list-style: none;
+    display: flex;
+    gap: 25px;
 }
 
 nav li:last-child {
@@ -176,6 +135,7 @@ nav li:last-child {
 nav a {
     color: var(--bg-100);
     text-transform: uppercase;
+    text-decoration: none;
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -185,6 +145,134 @@ nav a:hover {
     color: white;
 }
 
+.burger {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.burger input {
+    display: none;
+}
+
+.burger span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #2E2E2E;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1),
+.burger span:nth-of-type(3) {
+    top: 0;
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(1) {
+    transform: rotate(0deg);
+    top: 0;
+}
+
+.burger span:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+    transform: translateY(-100%) rotate(0deg);
+    top: 100%;
+}
+
+.burger input:checked ~ span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 0;
+    left: 5px;
+}
+
+.burger input:checked ~ span:nth-of-type(2) {
+    width: 0;
+    opacity: 0;
+}
+
+.burger input:checked ~ span:nth-of-type(3) {
+    transform: rotate(-45deg);
+    top: 28px;
+    left: 5px;
+}
+
+/*!*#toggler,*!*/
+/*nav label {*/
+/*    display: none;*/
+/*}*/
+
+/*@media (max-width: 600px) {*/
+/*    .logo-container {*/
+/*        display: none; !* Скрываем .logo-container *!*/
+/*    }*/
+
+/*    .logo-container img{*/
+/*        display: none; !* Скрываем .logo-container *!*/
+/*    }*/
+/*}*/
+
+
+
+    /*#toggler:checked ~ {*/
+    /*    max-height: 100%;*/
+    /*}*/
+
+/*}*/
+
+/*@media screen and (max-width: 375px) {*/
+/*    nav {*/
+/*        flex-direction: column;*/
+/*        justify-content: flex-start;*/
+/*        align-items: stretch;*/
+/*        padding: 10px;*/
+/*    }*/
+
+/*    nav a {*/
+/*        display: block;*/
+/*        text-align: center;*/
+/*        padding: 10px;*/
+/*    }*/
+
+/*    .menu-icon {*/
+/*        display: block;*/
+/*    }*/
+
+/*    .menu-items {*/
+/*        display: none;*/
+/*    }*/
+
+/*    nav .logo {*/
+/*        margin-right: auto;*/
+/*    }*/
+/*}*/
+
+.logo-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.logo-container img {
+    height: 50px;
+    object-fit: contain;
+}
+
+
+
+
 /* Main content styles */
 .container {
     max-width: 1200px;
@@ -193,9 +281,33 @@ nav a:hover {
 }
 
 main {
+    padding-top: 40px;
     margin-left: 200px;
     margin-right: 200px;
 }
+
+.about_museum div {
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+
+.about_museum div img {
+    border-radius: 1%;
+    flex-shrink: 0; /* Запрет уменьшения ширины картинки */
+    height: 360px; /* Установка начальной высоты картинки */
+    object-fit: cover; /* Масштабирование картинки с сохранением пропорций */
+    box-shadow: 15px 15px var(--primary-100);
+}
+
+.about_museum p {
+    max-width: 50%;
+    padding-right: 80px;
+}
+
+/*.about_museum img {*/
+/*    max-width: ;*/
+/*}*/
 
 section {
     margin-bottom: 40px;
@@ -211,11 +323,18 @@ section p {
     margin-bottom: 20px;
 }
 
+.contact-section div {
+    align-items: center;
+    display: flex;
+
+}
+
 .contact-section p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--primary-100);
+    padding-right: 100px;
 }
 
 /* Table styles */
@@ -267,7 +386,57 @@ footer p {
     color: var(--bg-100);
 }
 
-@media only screen and (max-width: 600px) {
+
+@media screen and (max-width: 800px){
+    main {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    nav {
+        padding: 5px 10px 5px 10px;
+    }
+}
+
+@media screen and (max-width: 600px){
+
+    main {
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+
+    /*.logo-container {*/
+    /*    display: none; !* Скрываем .logo-container *!*/
+    /*}*/
+
+    /*.logo-container img{*/
+    /*    display: none; !* Скрываем .logo-container *!*/
+    /*}*/
+
+    /*.logo-container img {*/
+    /*    display: none;*/
+    /*}*/
+
+    nav li {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /*nav label {*/
+    /*    display: inline-flex;*/
+    /*    align-items: center;*/
+    /*    cursor: pointer;*/
+    /*}*/
+
+    .default_menu {
+        display: none;
+    }
+
+    .about_museum img {
+        display: none;
+    }
+
     /* Responsive table */
     table {
         width: 100%;
@@ -288,47 +457,25 @@ footer p {
     }
 }
 
-/* Sidebar */
-.sidebar {
-    background-color: var(--bg-200);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    box-shadow: 0 0 10px var(--text-200);
+
+
+/* Стили для анимации текста */
+.text-animation {
+    /*display: block;*/
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-.sidebar h3 {
-    font-size: 18px;
-    margin-top: 0;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li {
-    margin: 10px 0;
-}
-
-.sidebar a {
-    color: var(--primary-100);
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Responsive sidebar */
-@media only screen and (max-width: 600px) {
-    .sidebar {
-        margin-top: 0;
-        margin-bottom: 20px;
+/* Анимация набора текста */
+@keyframes typing {
+    from {
+        width: 0;
     }
-
-    .sidebar h3 {
-        margin-top: 20px;
+    to {
+        width: 100%;
     }
 }
+
 
 /* Стилизация скролл-бара */
 ::-webkit-scrollbar {
@@ -339,35 +486,48 @@ footer p {
 /* Стилизация ползунка скролл-бара */
 ::-webkit-scrollbar-thumb {
     background-color: var(--primary-100); /* Цвет ползунка скролл-бара */
-    border-radius: 4px; /* Закругление углов ползунка скролл-бара */
+    /*border-radius: 4px; !* Закругление углов ползунка скролл-бара *!*/
 }
 
-.slider-container {
+
+.cssbuttons-io {
+    position: relative;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 0.8em;
+    background: linear-gradient(to right, #bd8c68, #ffefc7 );
+    color: var(--primary-100);
     overflow: hidden;
-    width: 100%;
 }
 
-.slider {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
+
+.cssbuttons-io span {
+    transition: color 0.4s;
+    position: relative;
+    align-items: center;
+    display: inline-flex;
 }
 
-.card {
-    flex: 0 0 300px; /* Ширина карточки */
-    margin-right: 15px; /* Отступ между карточками */
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+    position: absolute;
+    z-index: 0;
 }
 
-.card img {
-    width: 100%;
-    height: 200px; /* Высота изображения */
-    object-fit: cover; /* Растягивание изображения на всю высоту */
+.cssbuttons-io::before {
+    content: "";
+    background: #2E2E2E;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-.card h3 {
-    margin-top: 10px; /* Отступ сверху для названия */
+.cssbuttons-io:hover::before {
+    transform: translate(100%, 0);
 }
 
-.card p {
-    margin-top: 5px; /* Отступ сверху для остальных текстовых блоков */
+.cssbuttons-io:active {
+    transform: scale(0.95);
 }
-
