@@ -9,13 +9,25 @@
 <body>
 <nav>
     <div class="logo-container">
-        <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
     </div>
-    <ul>
-        <li><a href="/index/">Главная</a></li>
-        <li><a href="/table/">Таблица</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">Главная</a></li>
+            <li><a href="/table/">Таблица</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+        </ul>
+    </div>
+    <div class="drop">
+        <label for="burger" class="burger">
+            <input id="burger" type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
 </nav>
 <main>
     <h1>Электронная книга поступлений</h1>

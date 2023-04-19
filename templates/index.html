@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Музей "Наша Перловка"</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" type="image/png" href="../static/img/logo_mus.png">
@@ -9,60 +10,67 @@
 <body>
 <nav>
     <div class="logo-container">
-        <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
     </div>
-    <ul>
-        <li><a href="/index/">Главная</a></li>
-        <li><a href="/table/">Таблица</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">Главная</a></li>
+            <li><a href="/table/">Таблица</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+        </ul>
+    </div>
+    <div class="drop">
+        <label for="burger" class="burger">
+            <input id="burger" type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
 </nav>
 <header>
-    <h1>~ Наша Перловка ~</h1>
+    <h1 class="text-animation">~ Наша Перловка ~</h1>
+    <h3>школьный музей</h3>
 </header>
 <main>
     <section class="about_museum">
-        <h2>О музее</h2>
-        <p>Рыбный текст о музее и его истории</p>
-    </section>
-    <section class="news">
-        <h2>Новости</h2>
-        <ul>
-            <li>Новость 1</li>
-            <li>Новость 2</li>
-            <li>Новость 3</li>
-        </ul>
-    </section>
-    <section class="some_exhibits">
-        <h2>Экспонаты</h2>
-        <div class="slider-container">
-            <div class="slider">
-                <div class="card">
-                    <img src="../static/img/logo_mus.png" alt="Image 1">
-                    <h3>Название 1</h3>
-                    <p>Количество: 10</p>
-                    <p>Описание 1</p>
-                </div>
-                <div class="card">
-                    <img src="../static/img/logo_mus.png" alt="Image 2">
-                    <h3>Название 2</h3>
-                    <p>Количество: 15</p>
-                    <p>Описание 2</p>
-                </div>
-                <div class="card">
-                    <img src="../static/img/logo_mus.png" alt="Image 3">
-                    <h3>Название 3</h3>
-                    <p>Количество: 5</p>
-                    <p>Описание 3</p>
-                </div>
-                <!-- Добавьте еще карточки по аналогии -->
-            </div>
+            <h2>О музее</h2>
+        <div class="about_museum">
+            <p class="about_text">
+                &nbsp;&nbsp;&nbsp;&nbsp;Школьный музей "Наша Перловка" расположен в МБОУ СОШ 10 в городе Мытищи, в Московской области. Музей создан в рамках проекта по сохранению исторического наследия местности и приурочен к юбилею школы. Он является местом, где учащиеся могут познакомиться с историей своего родного города и школы, а также с местными традициями и достижениями.
+
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;Музей "Наша Перловка" содержит экспозиции, посвященные разным периодам истории города Мытищи. В экспозициях представлены различные артефакты, фотографии, документы и другие материалы, связанные с историей города, его жителями, а также с историей школы №10.
+
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;В музее также проводятся различные образовательные программы и мероприятия, такие как лекции, экскурсии, мастер-классы, конкурсы и выставки. Они позволяют учащимся расширить свои знания о истории родного города, развивать интерес к историческому наследию и патриотическому воспитанию.
+
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;Школьный музей "Наша Перловка" является важным культурным и образовательным центром для учащихся и педагогов школы, а также для местных жителей и гостей города Мытищи. Он способствует сохранению и продвижению исторического наследия города и его учреждений, а также развитию интереса к истории и культуре среди молодого поколения.
+            </p>
+
+            <img src="../static/img/mus1.png" alt="">
         </div>
-        <script src="../static/slider.js"></script>
+        <p> <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;</p>
     </section>
+<!--    <section class="news">-->
+<!--        <h2>Новости</h2>-->
+<!--        <ul>-->
+<!--            <li>Новость 1</li>-->
+<!--            <li>Новость 2</li>-->
+<!--            <li>Новость 3</li>-->
+<!--        </ul>-->
+<!--    </section>-->
+<!--    <section class="some_exhibits">-->
+<!--        <button class="cssbuttons-io">-->
+<!--&lt;!&ndash;            <a href="/table/">&ndash;&gt;-->
+<!--            <span>Наши экспонаты</span>-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        </button>-->
+<!--    </section>-->
 </main>
 <footer>
     <p>&copy; Наша Перловка 2023</p>
 </footer>
+<script src="../static/onload.js"></script>
 </body>
 </html>

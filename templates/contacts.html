@@ -10,25 +10,38 @@
 <body>
 <nav>
     <div class="logo-container">
-        <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
     </div>
-    <ul>
-        <li><a href="/index/">Главная</a></li>
-        <li><a href="/table/">Таблица</a></li>
-        <li><a href="/contacts/">Контакты</a></li>
-    </ul>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">Главная</a></li>
+            <li><a href="/table/">Таблица</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+        </ul>
+    </div>
+    <div class="drop">
+        <label for="burger" class="burger">
+            <input id="burger" type="checkbox">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
 </nav>
 <header>
     <h1>~ Наша Перловка ~</h1>
+    <h3>школьный музей</h3>
 </header>
 <main>
     <section class="contact-section">
+        <h1>Контакты</h1>
         <div class="container">
-            <h1>Контакты</h1>
-            <p>Адресс: ул. 1-я Крестьянская, 14, Мытищи, Московская обл., 141014</p>
-            <p>Контактный телефон: 7(xxx)xxx-xx-xx</p>
-            <p>e-mail: somemail@mail.ru</p>
-            <p>Режим работы: бла-бла-бла</p>
+            <p>Адресс: ул. 1-я Крестьянская, 14, Мытищи, Московская обл., 141014
+            <br>Контактный телефон: 7(xxx)xxx xx xx
+            <br>e-mail: somemail@mail.ru
+            <br>Режим работы: бла-бла-бла<p>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d279.6706167773242!2d37.71882571769209!3d55.89103002446313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b5316c13d0ec4d%3A0x5f327e1cdc9b40de!2z0KHRgNC10LTQvdGP0Y8g0L7QsdGJ0LXQvtCx0YDQsNC30L7QstCw0YLQtdC70YzQvdCw0Y8g0YjQutC-0LvQsCDihJYgNQ!5e0!3m2!1sru!2sru!4v1681766947883!5m2!1sru!2sru" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
