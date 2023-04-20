@@ -108,10 +108,17 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: var(--primary-200);
-    /*padding: 10px;*/
-    padding: 5px 200px 5px 10px;
+    padding: 5px 10px 5px 10px;
     padding-block: 15px;
 
+}
+
+.default_menu {
+    /*display: none;*/
+    display: flex;
+
+    /*position: relative;*/
+    /*align-items: center;*/
 }
 
 nav ul {
@@ -119,6 +126,7 @@ nav ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-inline-start: 0;
 }
 
 nav li {
@@ -126,6 +134,10 @@ nav li {
     list-style: none;
     display: flex;
     gap: 25px;
+}
+
+nav li:first-child {
+    margin-left: 0;
 }
 
 nav li:last-child {
@@ -162,7 +174,7 @@ nav a:hover {
     position: absolute;
     height: 4px;
     width: 100%;
-    background: #2E2E2E;
+    background: var(--primary-100);
     border-radius: 9px;
     opacity: 1;
     left: 0;
@@ -208,69 +220,16 @@ nav a:hover {
     left: 5px;
 }
 
-/*!*#toggler,*!*/
-/*nav label {*/
-/*    display: none;*/
-/*}*/
-
-/*@media (max-width: 600px) {*/
-/*    .logo-container {*/
-/*        display: none; !* Скрываем .logo-container *!*/
-/*    }*/
-
-/*    .logo-container img{*/
-/*        display: none; !* Скрываем .logo-container *!*/
-/*    }*/
-/*}*/
-
-
-
-    /*#toggler:checked ~ {*/
-    /*    max-height: 100%;*/
-    /*}*/
-
-/*}*/
-
-/*@media screen and (max-width: 375px) {*/
-/*    nav {*/
-/*        flex-direction: column;*/
-/*        justify-content: flex-start;*/
-/*        align-items: stretch;*/
-/*        padding: 10px;*/
-/*    }*/
-
-/*    nav a {*/
-/*        display: block;*/
-/*        text-align: center;*/
-/*        padding: 10px;*/
-/*    }*/
-
-/*    .menu-icon {*/
-/*        display: block;*/
-/*    }*/
-
-/*    .menu-items {*/
-/*        display: none;*/
-/*    }*/
-
-/*    nav .logo {*/
-/*        margin-right: auto;*/
-/*    }*/
-/*}*/
 
 .logo-container {
-    height: 100%;
     display: flex;
     align-items: center;
-    margin-right: 50px;
 }
 
 .logo-container img {
     height: 50px;
     object-fit: contain;
 }
-
-
 
 
 /* Main content styles */
@@ -304,10 +263,6 @@ main {
     max-width: 50%;
     padding-right: 80px;
 }
-
-/*.about_museum img {*/
-/*    max-width: ;*/
-/*}*/
 
 section {
     margin-bottom: 40px;
@@ -373,21 +328,100 @@ table td {
     padding: 10px;
 }
 
+.previous_next {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cssbuttons-io {
+    position: relative;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 0.8em;
+    letter-spacing: 0.05em;
+    /*background: linear-gradient(to right, #bd8c68, #ffefc7 );*/
+    /*color: var(--primary-100);*/
+    background: linear-gradient(to right, var(--accent-100), #6db2b4);
+
+    overflow: hidden;
+}
+
+.cssbuttons-io a {
+    /*color: var(--primary-200);*/
+    color: ghostwhite;
+}
+
+.cssbuttons-io span {
+    z-index: 10;
+    transition: color 0.4s;
+    position: relative;
+    align-items: center;
+    display: inline-flex;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+}
+
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.cssbuttons-io::before {
+    content: "";
+    background: var(--primary-200);
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+    transform: translate(100%, 0);
+}
+
+.cssbuttons-io:active {
+    transform: scale(0.95);
+}
+
+
 /* Footer */
 footer {
-    background-color: var(--primary-100);
-    color: white;
+    background-color: var(--primary-200);
     padding: 20px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: auto;
 }
 
 footer p {
     color: var(--bg-100);
 }
 
+@media screen and (max-width: 1024px) {
 
-@media screen and (max-width: 800px){
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 800px) {
     main {
         margin-left: 60px;
         margin-right: 60px;
@@ -396,85 +430,158 @@ footer p {
     nav {
         padding: 5px 10px 5px 10px;
     }
+
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+
 }
 
-@media screen and (max-width: 600px){
-
-    main {
-        margin-right: 30px;
-        margin-left: 30px;
+@media screen and (max-width: 650px) {
+    header {
+        padding: 30px;
     }
 
-    /*.logo-container {*/
-    /*    display: none; !* Скрываем .logo-container *!*/
-    /*}*/
-
-    /*.logo-container img{*/
-    /*    display: none; !* Скрываем .logo-container *!*/
-    /*}*/
-
-    /*.logo-container img {*/
-    /*    display: none;*/
-    /*}*/
-
-    nav li {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
+    header h1 {
+        font-size: 30px;
     }
 
-    /*nav label {*/
-    /*    display: inline-flex;*/
-    /*    align-items: center;*/
-    /*    cursor: pointer;*/
-    /*}*/
 
+    header h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    /*main {*/
+    /*    margin-right: 30px;*/
+    /*    margin-left: 30px;*/
+    /*}*/
     .default_menu {
         display: none;
     }
 
-    .about_museum img {
-        display: none;
+    .burger {
+        display: flex;
     }
+
 
     /* Responsive table */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    table td, table th {
-        text-align: center;
-        padding: 5px;
-    }
-
-    table th {
-        background-color: var(--primary-200);
-    }
-
-    table tr:nth-child(even) {
-        background-color: var(--bg-300);
-    }
+    /*    table {*/
+    /*        width: 100%;*/
+    /*        border-collapse: collapse;*/
+    /*    }*/
+    /*    table td, table th {*/
+    /*        text-align: center;*/
+    /*        padding: 5px;*/
+    /*    }*/
+    /*    table th {*/
+    /*        background-color: var(--primary-200);*/
+    /*    }*/
+    /*    table tr:nth-child(even) {*/
+    /*        background-color: var(--bg-300);*/
+    /*    }*/
 }
 
+@media screen and (max-width: 450px) {
+    header {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+
+    header h3 {
+        font-size: 10px;
+    }
+
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+
+    .cssbuttons-io {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+    header {
+        padding: 7px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+
+    header h3 {
+        font-size: 8px;
+    }
+
+    .cssbuttons-io {
+        font-size: 10px;
+    }
+}
 
 
 /* Стили для анимации текста */
 .text-animation {
     /*display: block;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
     white-space: nowrap;
 }
 
 /* Анимация набора текста */
 @keyframes typing {
     from {
+        opacity: 0;
         width: 0;
     }
     to {
+        opacity: 1;
         width: 100%;
     }
 }
+
+/*@keyframes default_menu_opacity {*/
+/*    from {*/
+/*        opacity: 0;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1;*/
+/*    }*/
+/*}*/
+
+/*.default_menu {*/
+/*    opacity: 0  ;*/
+/*    animation: default_menu_opacity 1s ease-in forwards;*/
+/*}*/
 
 
 /* Стилизация скролл-бара */
@@ -490,44 +597,3 @@ footer p {
 }
 
 
-.cssbuttons-io {
-    position: relative;
-    border: none;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: 18px;
-    border-radius: 0.8em;
-    background: linear-gradient(to right, #bd8c68, #ffefc7 );
-    color: var(--primary-100);
-    overflow: hidden;
-}
-
-
-.cssbuttons-io span {
-    transition: color 0.4s;
-    position: relative;
-    align-items: center;
-    display: inline-flex;
-}
-
-
-.cssbuttons-io::before,
-.cssbuttons-io::after {
-    position: absolute;
-    z-index: 0;
-}
-
-.cssbuttons-io::before {
-    content: "";
-    background: #2E2E2E;
-    transform: skew(30deg);
-    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
-}
-
-.cssbuttons-io:hover::before {
-    transform: translate(100%, 0);
-}
-
-.cssbuttons-io:active {
-    transform: scale(0.95);
-}
