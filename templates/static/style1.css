@@ -1,0 +1,735 @@
+:root {
+    --primary-100: #8B5F3D;
+    --primary-200: #BD8C68;
+    --primary-300: #ffefc7;
+    --accent-100: #A8DADC;
+    --accent-200: #4a797b;
+    --text-100: #2E2E2E;
+    --text-200: #575757;
+    --bg-100: #FFF8E7;
+    --bg-200: #ebe2cd;
+    --bg-300: #c2baa6;
+}
+
+/* Global styles */
+* {
+    margin: 0;
+}
+
+::selection {
+    background: var(--accent-100);
+}
+
+
+body {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-100);
+    background-color: var(--bg-100);
+    height: 100vh;
+    width: 100vw;
+    margin: 0rem;
+    overflow-x: hidden;
+}
+
+
+a {
+    /*color: var(--primary-100);*/
+    text-decoration: none;
+    /*transition: color 0.3s ease;*/
+}
+
+/*a:hover {*/
+/*    color: var(--primary-200);*/
+/*}*/
+
+p {
+    font-family: 'Playfair Display', serif;
+    max-width: 50%;
+    /*padding-right: 80px;*/
+    padding-right: 0;
+    color: black;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary-100);
+}
+
+img, ul, li, a, iframe {
+    user-select: none; /* -- Prevent image highlighting -- */
+}
+
+hr {
+    margin: 25px;
+}
+
+/* Navigation styles */
+.main-nav {
+    /*height: 5vh;*/
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-200);
+    padding: 5px 11.5vw;
+
+    /*padding-block: 15px;*/
+}
+
+.default_menu {
+    /*display: none;*/
+    display: block;
+    width: 36.5vw;
+    text-align: center;
+    /*position: relative;*/
+    /*align-items: center;*/
+}
+
+.main-nav ul {
+    list-style: none;
+    /*display: block;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    padding-inline-start: 0;
+}
+
+.main-nav li {
+    /*margin-left: 20px;*/
+    margin: 0 3vw;
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    transition: .4s all ease;
+    /*gap: 25px;*/
+}
+
+.main-nav li:hover {
+    color: #cdcdcd;
+    transition: .4s all ease;
+}
+
+.main-nav li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform .5s ease-out;
+}
+
+.main-nav li:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+.main-nav li:first-child {
+    margin-left: 0;
+}
+
+.main-nav li:last-child {
+    margin-right: 0;
+}
+
+.main-nav a {
+    font-size: 1.35vw;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    /*font-weight: bold;*/
+    letter-spacing: 1px;
+
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main-nav a:hover:only-child {
+    /*color: var(--primary-100);*/
+    color: #ffffff;
+}
+
+.toggle {
+    height: 3.5vw;
+    width: 3.5vw;
+    /*width: 50px;*/
+    /*height: 50px;*/
+}
+
+/* Header styles */
+header {
+    /*background-image: url("img/mus.png");*/
+    /*background-size: cover;*/
+    /*height: 15vh;*/
+    /*position: relative;*/
+    /*background-position: center;*/
+    /*padding: 60px;*/
+    /*text-align: center;*/
+    /*color: #fff;*/
+    /*display: block;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.anim {
+    text-align: center;
+}
+
+.logo-container {
+    display: flex;
+    /*align-items: center;*/
+    position: relative;
+    height: 3.5vw;
+}
+
+.logo-container a {
+    /*height: 50px;*/
+    /*height: auto;*/
+    /*height: 100%;*/
+    /*object-fit: contain;*/
+}
+
+.logo-container img {
+    /*height: 50px;*/
+    height: 3.5vw;
+    object-fit: contain;
+}
+
+
+/* Main content styles */
+.container {
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    padding-top: 40px;
+    margin: 0 11.5vw;
+    /*margin-left: 200px;*/
+    /*margin-right: 200px;*/
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.about_museum div {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about_museum div img {
+    /*border-radius: 1%;*/
+    flex-shrink: 0; /* Запрет уменьшения ширины картинки */
+    width: 34vmin;
+    height: 50vmin;
+    object-fit: cover; /* Масштабирование картинки с сохранением пропорций */
+    /*box-shadow: 15px 15px var(--primary-100);*/
+    transition: transform .45s ease-in-out;
+}
+
+.about_museum div img:hover {
+    /*border-radius: 1%;*/
+    /*transform: rotate3d(1, 1, 1, 2deg) scale(110%);*/
+}
+
+.about_museum p {
+    max-width: 50%;
+    padding-right: 80px;
+
+    color: black;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h1 {
+    color: #AB6C3C;
+    font-size: 4.4vw;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: 0;
+}
+
+section h2 {
+    color: #AB6C3C;
+    font-size: 2.778vw;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+section p {
+    /*max-width: 50%;*/
+    /*padding-right: 80px;*/
+
+    color: black;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 20px;
+}
+
+.slider_section {
+    position: relative;
+    display: flex;
+}
+
+#image-track {
+    display: inline-flex;
+    gap: 4vmin;
+    position: relative;
+    /*position: absolute;*/
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: translate(0%, 0%);
+    user-select: none; /* -- Prevent image highlighting -- */
+}
+
+#image-track > .image {
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+}
+
+.previous_next a {
+    color: #000;
+    font-size: 2vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: inline-block;
+    position: relative;
+    transition: .4s all ease;
+}
+
+.previous_next a:hover {
+    color: black;
+    transition: .4s all ease;
+}
+
+.previous_next a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform .5s ease-out;
+}
+
+.previous_next a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/*.contact-section .container {*/
+/*    align-items: center;*/
+/*    display: flex;*/
+/*}*/
+
+.contact-section .contacts {
+    position: relative;
+    /*align-items: center;*/
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-section h1 {
+    margin-bottom: 15px;
+}
+
+.contacts p {
+    position: relative;
+    margin-bottom: 15px;
+    max-width: 65%;
+}
+
+/*.contact-section p {*/
+/*    font-family: 'Montserrat', sans-serif;*/
+/*    font-weight: 500;*/
+/*    margin-bottom: 10px;*/
+/*    !*color: var(--primary-100);*!*/
+/*    padding-right: 100px;*/
+/*}*/
+
+/* Table styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+table a {
+    color: #000;
+    /*font-size: 0.4vw;*/
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: inline-block;
+    position: relative;
+    transition: .4s all ease;
+}
+
+table a:hover {
+    color: black;
+    transition: .4s all ease;
+}
+
+table a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform .5s ease-out;
+}
+
+table a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+tbody {
+    font-size: .85vw;
+    font-weight: 400;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid var(--bg-300);
+    text-align: center;
+}
+
+table th {
+    background-color: var(--bg-200);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-100);
+}
+
+table tr:nth-child(even) {
+    background-color: var(--bg-200);
+}
+
+table th {
+    background-color: var(--primary-100);
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    border: 1px solid var(--text-200);
+    padding: 10px;
+}
+
+.example_exhib {
+
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back_button a{
+    color: #000;
+    font-size: 1.2vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-content: center;
+    display: inline-block;
+    position: relative;
+    transition: .4s all ease;
+}
+
+.back_button a:hover {
+    color: black;
+    transition: .4s all ease;
+}
+
+.back_button a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform .5s ease-out;
+}
+
+.back_button a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#itemH1 {
+    max-width: 65%;
+}
+
+#previous_next_item a {
+    font-size: 1.2vw;
+}
+
+.example_exhib_text p {
+    margin-right: 10px;
+}
+
+.example_exhib img {
+    flex-shrink: 0; /* Запрет уменьшения ширины картинки */
+    height: 360px; /* Установка начальной высоты картинки */
+    object-fit: cover; /* Масштабирование картинки с сохранением пропорций */
+}
+
+.previous_next {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    nav {
+        padding: 5px 10px 5px 10px;
+    }
+
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    header {
+        padding: 30px;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+
+    header h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    /*main {*/
+    /*    margin-right: 30px;*/
+    /*    margin-left: 30px;*/
+    /*}*/
+    .default_menu {
+        display: none;
+    }
+
+    /*.burger {*/
+    /*    display: flex;*/
+    /*}*/
+    /*.default_menu ul {*/
+    /*    display: none;*/
+    /*}*/
+    /*.burger-menu-container {*/
+    /*    display: block;*/
+    /*}*/
+    .mobile-menu {
+        display: block;
+    }
+
+    /* Responsive table */
+    /*    table {*/
+    /*        width: 100%;*/
+    /*        border-collapse: collapse;*/
+    /*    }*/
+    /*    table td, table th {*/
+    /*        text-align: center;*/
+    /*        padding: 5px;*/
+    /*    }*/
+    /*    table th {*/
+    /*        background-color: var(--primary-200);*/
+    /*    }*/
+    /*    table tr:nth-child(even) {*/
+    /*        background-color: var(--bg-300);*/
+    /*    }*/
+}
+
+@media screen and (max-width: 450px) {
+    header {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+
+    header h3 {
+        font-size: 10px;
+    }
+
+    .about_museum div {
+        display: block;
+    }
+
+    .about_museum p {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .about_museum div img {
+        margin-top: 50px;
+        height: 95%;
+        width: 95%;
+    }
+
+    .cssbuttons-io {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+    header {
+        padding: 7px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+
+    header h3 {
+        font-size: 8px;
+    }
+
+    .cssbuttons-io {
+        font-size: 10px;
+    }
+}
+
+
+/* Стили для анимации текста */
+.text-animation {
+    position: relative;
+    /*display: block;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    justify-content: center;
+}
+
+/* Анимация набора текста */
+@keyframes typing {
+    from {
+        /*opacity: 0;*/
+        width: 0;
+    }
+    to {
+        /*opacity: 1;*/
+        width: 100%;
+    }
+}
+
+/*@keyframes default_menu_opacity {*/
+/*    from {*/
+/*        opacity: 0;*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1;*/
+/*    }*/
+/*}*/
+
+/*.default_menu {*/
+/*    opacity: 0  ;*/
+/*    animation: default_menu_opacity 1s ease-in forwards;*/
+/*}*/
+
+
+/* Стилизация скролл-бара */
+::-webkit-scrollbar {
+    width: 8px; /* Ширина скролл-бара */
+    background-color: var(--primary-200); /* Цвет фона скролл-бара */
+}
+
+/* Стилизация ползунка скролл-бара */
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-100); /* Цвет ползунка скролл-бара */
+    /*border-radius: 4px; !* Закругление углов ползунка скролл-бара *!*/
+}
+
+

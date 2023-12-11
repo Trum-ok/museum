@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей "Наша Перловка"</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style1.css">
+    <link rel="icon" type="image/png" href="../static/img/logo_mus.png">
+</head>
+<body>
+<nav class="main-nav">
+    <div class="logo-container">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
+    </div>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">ГЛАВНАЯ</a></li>
+            <li><a href="/table/">ТАБЛИЦА</a></li>
+            <li><a href="/contacts/">КОНТАКТЫ</a></li>
+        </ul>
+    </div>
+    <div class="toggle">
+        <label class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+</nav>
+<main>
+    <section class="about_museum">
+        <h1>Музей</h1>
+        <h2>"Наша Перловка"</h2>
+        <div class="about_museum">
+            <p class="about_text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;Школьный музей "Наша Перловка" расположен в МБОУ СОШ №10 (бывшей МБОУ СОШ №5) в г.о. Мытищи, в Московской области. Музей открыт 10 декабря 2009 г. на месте школьной библиотеки. Он является местом, где учащиеся могут познакомиться с историей своего Мытищ, школы, а также с местными традициями и достижениями.
+                    <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Музей "Наша Перловка" содержит экспозиции, посвященные разным периодам истории города Мытищи («Перловка и ее жители», «История Донской церкви», «Перловка во время ВОВ», «История образования в Перловке»). В экспозициях представлены различные артефакты, фотографии, документы и другие материалы, связанные с историей города, его жителями, а также с историей школы №5.
+                    <br><br>&nbsp;&nbsp;&nbsp;&nbsp;В музее также проводятся различные образовательные программы и мероприятия, такие как лекции, экскурсии, мастер-классы, конкурсы и выставки. Они позволяют учащимся расширить свои знания о истории родного города, развивать интерес к историческому наследию и патриотическому воспитанию.
+                    <br><br>&nbsp;&nbsp;&nbsp;&nbsp;Школьный музей "Наша Перловка" является важным культурным и образовательным центром для учащихся и педагогов школы, а также для местных жителей и гостей города Мытищи. Он способствует сохранению и продвижению исторического наследия города и его учреждений, а также развитию интереса к истории и культуре среди молодого поколения.
+            </p>
+            <img src="../static/img/main_fr_1.webp" alt="">
+        </div>
+<!--        <p><br><br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;</p>-->
+    </section>
+    <hr style="border: 1px solid #AB6C3C;">
+    <section class="slider_section">
+        <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
+          <img class="image" src="../static/img/sl1.webp" draggable="false" />
+          <img class="image" src="../static/img/sl2.webp" draggable="false" />
+          <img class="image" src="../static/img/sl3.webp" draggable="false" />
+          <img class="image" src="../static/img/sl4.webp" draggable="false" />
+          <img class="image" src="../static/img/sl5.webp" draggable="false" />
+          <img class="image" src="../static/img/sl6.webp" draggable="false" />
+          <img class="image" src="../static/img/sl7.webp" draggable="false" />
+          <img class="image" src="../static/img/sl8.jpg" draggable="false" />
+        </div>
+    </section>
+    <section class="previous_next">
+        <a href="/contacts/">
+            <span>< Контакты</span>
+        </a>
+        <a href="/table/">
+            <span>Таблица ></span>
+        </a>
+{#        <button class="cssbuttons-io">#}
+{#            <a href="/contacts/">#}
+{#                <span>< Контакты</span>#}
+{#            </a>#}
+{#        </button>#}
+{#        <button class="cssbuttons-io">#}
+{#            <a href="/table/">#}
+{#                <span>Таблица ></span>#}
+{#            </a>#}
+{#        </button>#}
+    </section>
+</main>
+<script src="../static/slider.js"></script>
+</body>
+</html>

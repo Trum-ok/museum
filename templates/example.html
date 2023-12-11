@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей "Наша Перловка"</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" type="image/png" href="../static/img/logo_mus.png">
+</head>
+<body>
+<nav class="main-nav">
+    <div class="logo-container">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
+    </div>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">Главная</a></li>
+            <li><a href="/table/">Таблица</a></li>
+            <li><a href="/contacts/">Контакты</a></li>
+        </ul>
+    </div>
+    <!--    <input type="checkbox" id="burger_toggle"/>-->
+    <label for="burger_toggle" class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <!--    <nav class="dropdown-menu">-->
+    <!--        <a href="/index/">Главная</a>-->
+    <!--        <a href="/table/">Таблица</a>-->
+    <!--        <a href="/contacts/">Контакты</a>-->
+    <!--    </nav>-->
+</nav>
+
+<main>
+    <a href="/table/">< назад</a>
+    <h1>{{ data[0][0] }}</h1>
+    <section class="example_exhib">
+        <div class="example_exhib_text">
+            <p><b>Кол-во:</b> {{ data[0][1] }} шт</p>
+            <p><b>Способ получения:</b> {{ data[0][2] }}</p>
+            <p><b>Место обнаружения:</b> {{ data[0][3] }}</p>
+            <p><b>Описание:</b> {{ data[0][4] }}</p>
+            <p><b>Назначение:</b> {{ data[0][5] }}</p>
+            <p><b>Инвентарный №:</b> {{ data[0][6] }}/{{ data[0][7] }}/{{ data[0][8] }}</p>
+        </div>
+        <img src="../static/img/helmet41.png" alt="">
+    </section>
+
+</main>
+<footer>
+    <p>&copy; Наша Перловка 2023</p>
+</footer>
+</body>
+</html>

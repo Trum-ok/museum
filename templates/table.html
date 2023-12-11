@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музей "Наша Перловка"</title>
+    <link rel="stylesheet" href="../static/style1.css">
+    <link rel="icon" type="image/png" href="../static/img/logo_mus.png">
+</head>
+<body>
+<nav class="main-nav" id="navbar">
+    <div class="logo-container">
+        <a href="/index/">
+            <img src="../static/img/logo_mus.png" alt="Наша Перловка">
+        </a>
+    </div>
+    <div class="default_menu">
+        <ul>
+            <li><a href="/index/">ГЛАВНАЯ</a></li>
+            <li><a href="/table/">ТАБЛИЦА</a></li>
+            <li><a href="/contacts/">КОНТАКТЫ</a></li>
+        </ul>
+    </div>
+    <div class="toggle">
+        <label class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+</nav>
+<main>
+    <section class="table">
+        <h1>Электронная</h1>
+        <h2>книга поступлений</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Кол-во</th>
+                <th>Способ получения</th>
+                <th>Место обнаружения</th>
+                <th>Описание</th>
+                <th>Назначение</th>
+                <th>Инв. №</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+            <tr>
+                <td>
+<!--                    <a href="/item_{{ loop.index }}/"> {{ row[0] }} </a>-->
+<!--                    <a href="/item/" id="myLink" data-loop-index="{{ loop.index }}"> {{ row[0] }} </a>-->
+                    <a href="/item?value={{ loop.index }}/"> {{ row[0] }} </a>
+                </td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}/{{ row[7] }}/{{ row[8] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <section class="previous_next">
+        <a href="/contacts/">
+            <span>< Контакты</span>
+        </a>
+        <a href="/index/">
+            <span>Главная ></span>
+        </a>
+    </section>
+</main>
+<script src="../static/on_scroll.js"></script>
+</body>
+</html>
