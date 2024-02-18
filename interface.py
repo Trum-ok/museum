@@ -6,7 +6,7 @@ import customtkinter
 from datetime import datetime
 from PIL import Image, ImageTk
 
-import db_update
+import utils.db_update as db_update
 import page_gen
 
 customtkinter.set_appearance_mode("Light")  # Modes: "System" (standard), "Dark", "Light"
