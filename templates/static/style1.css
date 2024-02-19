@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
 :root {
     --primary-100: #8B5F3D;
     --primary-200: #BD8C68;
@@ -11,13 +14,15 @@
     --bg-300: #c2baa6;
 }
 
-/* Global styles */
-* {
-    margin: 0;
-}
 
 ::selection {
     background: var(--accent-100);
+}
+
+
+* {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
 }
 
 
@@ -29,49 +34,53 @@ body {
     background-color: var(--bg-100);
     height: 100vh;
     width: 100vw;
-    margin: 0rem;
     overflow-x: hidden;
 }
 
 
-a {
-    /*color: var(--primary-100);*/
-    text-decoration: none;
-    /*transition: color 0.3s ease;*/
+.container {
+    margin: 0 11.5vw;
 }
 
-/*a:hover {*/
-/*    color: var(--primary-200);*/
-/*}*/
+
+main {
+    padding-top: 40px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 
 p {
     font-family: 'Playfair Display', serif;
-    max-width: 50%;
-    /*padding-right: 80px;*/
+    /* max-width: 50%; */
     padding-right: 0;
-    color: black;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    color: black;
 }
 
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--primary-100);
 }
 
+
 img, ul, li, a, iframe {
-    user-select: none; /* -- Prevent image highlighting -- */
+    user-select: none;
+    text-decoration: none;
 }
+
 
 hr {
     margin: 25px;
 }
 
-/* Navigation styles */
+
 .main-nav {
     /*height: 5vh;*/
     position: relative;
@@ -81,12 +90,10 @@ hr {
     justify-content: space-between;
     background-color: var(--primary-200);
     padding: 5px 11.5vw;
-
     /*padding-block: 15px;*/
 }
 
 .default_menu {
-    /*display: none;*/
     display: block;
     width: 36.5vw;
     text-align: center;
@@ -96,21 +103,18 @@ hr {
 
 .main-nav ul {
     list-style: none;
-    /*display: block;*/
-    /*align-items: center;*/
-    /*justify-content: space-between;*/
     padding-inline-start: 0;
 }
 
+
 .main-nav li {
-    /*margin-left: 20px;*/
     margin: 0 3vw;
     list-style: none;
     display: inline-block;
     position: relative;
     transition: .4s all ease;
-    /*gap: 25px;*/
 }
+
 
 .main-nav li:hover {
     color: #cdcdcd;
@@ -146,44 +150,27 @@ hr {
 
 .main-nav a {
     font-size: 1.35vw;
-    color: white;
-    text-transform: uppercase;
-    text-decoration: none;
-    /*font-weight: bold;*/
-    letter-spacing: 1px;
-
-    text-align: center;
     font-style: normal;
     font-weight: 400;
+    /*font-weight: bold;*/
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1px;
     line-height: normal;
 }
 
+
 .main-nav a:hover:only-child {
-    /*color: var(--primary-100);*/
     color: #ffffff;
 }
+
 
 .toggle {
     height: 3.5vw;
     width: 3.5vw;
-    /*width: 50px;*/
-    /*height: 50px;*/
 }
 
-/* Header styles */
-header {
-    /*background-image: url("img/mus.png");*/
-    /*background-size: cover;*/
-    /*height: 15vh;*/
-    /*position: relative;*/
-    /*background-position: center;*/
-    /*padding: 60px;*/
-    /*text-align: center;*/
-    /*color: #fff;*/
-    /*display: block;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-}
 
 .anim {
     text-align: center;
@@ -196,39 +183,12 @@ header {
     height: 3.5vw;
 }
 
-.logo-container a {
-    /*height: 50px;*/
-    /*height: auto;*/
-    /*height: 100%;*/
-    /*object-fit: contain;*/
-}
 
 .logo-container img {
-    /*height: 50px;*/
     height: 3.5vw;
     object-fit: contain;
 }
 
-
-/* Main content styles */
-.container {
-    /*max-width: 1200px;*/
-    margin: 0 auto;
-    padding: 0;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-main {
-    padding-top: 40px;
-    margin: 0 11.5vw;
-    /*margin-left: 200px;*/
-    /*margin-right: 200px;*/
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
 
 .about_museum div {
     position: relative;
@@ -247,20 +207,12 @@ main {
     transition: transform .45s ease-in-out;
 }
 
-.about_museum div img:hover {
-    /*border-radius: 1%;*/
-    /*transform: rotate3d(1, 1, 1, 2deg) scale(110%);*/
-}
 
 .about_museum p {
     max-width: 50%;
     padding-right: 80px;
-
-    color: black;
-    font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
 }
 
 section {
@@ -288,12 +240,8 @@ section h2 {
 section p {
     /*max-width: 50%;*/
     /*padding-right: 80px;*/
-
-    color: black;
-    font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: normal;
     margin-bottom: 20px;
 }
 
@@ -301,6 +249,7 @@ section p {
     position: relative;
     display: flex;
 }
+
 
 #image-track {
     display: inline-flex;
@@ -311,7 +260,7 @@ section p {
     right: 0;
     top: 0;
     transform: translate(0%, 0%);
-    user-select: none; /* -- Prevent image highlighting -- */
+    user-select: none;
 }
 
 #image-track > .image {
@@ -356,10 +305,6 @@ section p {
     transform-origin: bottom left;
 }
 
-/*.contact-section .container {*/
-/*    align-items: center;*/
-/*    display: flex;*/
-/*}*/
 
 .contact-section .contacts {
     position: relative;
@@ -378,15 +323,7 @@ section p {
     max-width: 65%;
 }
 
-/*.contact-section p {*/
-/*    font-family: 'Montserrat', sans-serif;*/
-/*    font-weight: 500;*/
-/*    margin-bottom: 10px;*/
-/*    !*color: var(--primary-100);*!*/
-/*    padding-right: 100px;*/
-/*}*/
 
-/* Table styles */
 table {
     border-collapse: collapse;
     width: 100%;
@@ -519,7 +456,7 @@ table td {
 
 .example_exhib img {
     flex-shrink: 0; /* Запрет уменьшения ширины картинки */
-    height: 360px; /* Установка начальной высоты картинки */
+    height: 360px;
     object-fit: cover; /* Масштабирование картинки с сохранением пропорций */
 }
 
@@ -529,7 +466,26 @@ table td {
 }
 
 
-@media screen and (max-width: 1024px) {
+
+.exhibit-view {
+    display: flex;
+    align-items: center;
+}
+
+
+.exhibit {
+flex: 1;
+margin-right: 20px;
+} 
+
+
+/* img {
+max-width: 100%;
+} */
+  
+
+
+/* @media screen and (max-width: 1024px) {
 
     .about_museum div {
         display: block;
@@ -545,9 +501,9 @@ table td {
         height: 95%;
         width: 95%;
     }
-}
+} */
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
     main {
         margin-left: 60px;
         margin-right: 60px;
@@ -572,9 +528,9 @@ table td {
         width: 95%;
     }
 
-}
+} */
 
-@media screen and (max-width: 650px) {
+/* @media screen and (max-width: 650px) {
     header {
         padding: 30px;
     }
@@ -587,17 +543,17 @@ table td {
     header h3 {
         font-size: 20px;
     }
-}
-
+} */
+/* 
 @media screen and (max-width: 600px) {
 
     /*main {*/
     /*    margin-right: 30px;*/
     /*    margin-left: 30px;*/
     /*}*/
-    .default_menu {
-        display: none;
-    }
+    /* .default_menu { */
+        /* display: none; */
+    /* } */
 
     /*.burger {*/
     /*    display: flex;*/
@@ -608,9 +564,9 @@ table td {
     /*.burger-menu-container {*/
     /*    display: block;*/
     /*}*/
-    .mobile-menu {
+    /* .mobile-menu {
         display: block;
-    }
+    } */ 
 
     /* Responsive table */
     /*    table {*/
@@ -627,9 +583,9 @@ table td {
     /*    table tr:nth-child(even) {*/
     /*        background-color: var(--bg-300);*/
     /*    }*/
-}
+/* } */
 
-@media screen and (max-width: 450px) {
+/* @media screen and (max-width: 450px) {
     header {
         padding: 20px;
     }
@@ -681,19 +637,15 @@ table td {
     .cssbuttons-io {
         font-size: 10px;
     }
-}
+} */
 
 
-/* Стили для анимации текста */
 .text-animation {
     position: relative;
-    /*display: block;*/
-    /*overflow: hidden;*/
-    /*white-space: nowrap;*/
     justify-content: center;
 }
 
-/* Анимация набора текста */
+
 @keyframes typing {
     from {
         /*opacity: 0;*/
@@ -705,31 +657,15 @@ table td {
     }
 }
 
-/*@keyframes default_menu_opacity {*/
-/*    from {*/
-/*        opacity: 0;*/
-/*    }*/
-/*    to {*/
-/*        opacity: 1;*/
-/*    }*/
-/*}*/
 
-/*.default_menu {*/
-/*    opacity: 0  ;*/
-/*    animation: default_menu_opacity 1s ease-in forwards;*/
-/*}*/
-
-
-/* Стилизация скролл-бара */
 ::-webkit-scrollbar {
-    width: 8px; /* Ширина скролл-бара */
-    background-color: var(--primary-200); /* Цвет фона скролл-бара */
+    width: 8px;
+    background-color: var(--primary-200);
 }
 
-/* Стилизация ползунка скролл-бара */
+
 ::-webkit-scrollbar-thumb {
-    background-color: var(--primary-100); /* Цвет ползунка скролл-бара */
-    /*border-radius: 4px; !* Закругление углов ползунка скролл-бара *!*/
+    background-color: var(--primary-100);
 }
 
 

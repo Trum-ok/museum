@@ -8,6 +8,8 @@ import {
 import Home from './pages/index';
 import Contacts from './pages/contacts'
 import Table from './pages/table'
+import Item from "./pages/item";
+import NotFound from "./pages/404";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/table" element={<Table />} />
             <Route path="/contacts" element={<Contacts />}/>
+            <Route path="/tables/item" element={<Item />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
   )
