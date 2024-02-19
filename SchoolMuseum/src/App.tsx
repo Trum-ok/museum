@@ -1,4 +1,4 @@
-import "../../templates/static/style1.css"
+import "./style.css"
 import Navbar from './components/navbar'
 import {
   BrowserRouter as Router,
