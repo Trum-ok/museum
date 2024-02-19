@@ -1,6 +1,7 @@
 import sqlite3
 import psycopg2
 
+
 # 1. Экспорт данных из SQLite3
 def export_data_from_sqlite():
     conn_sqlite = sqlite3.connect('exhibits.db')
@@ -15,7 +16,7 @@ def export_data_from_sqlite():
 
 # 2. Импорт данных в PostgreSQL
 def import_data_to_postgresql(data):
-    conn_postgresql = psycopg2.connect(database='exhibits', user='postgres', password='Aa01011991TrumaA', host='localhost')
+    conn_postgresql = psycopg2.connect(database='exhibits', user='postgres', password='password', host='localhost')
     cursor_postgresql = conn_postgresql.cursor()
 
     for row in data:

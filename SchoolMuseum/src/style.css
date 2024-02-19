@@ -640,24 +640,6 @@ max-width: 100%;
 } */
 
 
-.text-animation {
-    position: relative;
-    justify-content: center;
-}
-
-
-@keyframes typing {
-    from {
-        /*opacity: 0;*/
-        width: 0;
-    }
-    to {
-        /*opacity: 1;*/
-        width: 100%;
-    }
-}
-
-
 ::-webkit-scrollbar {
     width: 8px;
     background-color: var(--primary-200);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import Slider from "../components/Slider"
 
 import sl1 from "../assets/img/sl1.webp"
