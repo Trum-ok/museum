@@ -32,6 +32,7 @@ function Item() {
                 setExhibit(jsonData);
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
+                window.location.href = '/404';
             }
         };
         fetchExhibit();
