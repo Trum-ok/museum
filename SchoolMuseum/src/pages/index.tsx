@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react"
+import Slider from "../components/Slider"
+
 import sl1 from "../assets/img/sl1.webp"
 import sl2 from "../assets/img/sl2.webp"
 import sl3 from "../assets/img/sl3.webp"
@@ -8,6 +11,11 @@ import sl7 from "../assets/img/sl7.webp"
 import sl8 from "../assets/img/sl8.webp"
 
 function Home() {
+
+    useEffect(() => {
+        Slider();
+    }, []); 
+
     return (
         <>
         <div className="container">
@@ -25,7 +33,7 @@ function Home() {
                     <img src="../static/img/main_fr_1.webp" alt="" />
                 </div>
             </section>
-            {/* <hr style={{border: "2px", color: "#AB6C3C"}} /> */}
+            <hr style={{border: "2px", color: "#AB6C3C"}} />
             <section className="slider_section">
                 <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
                 <img className="image" src={sl1} draggable="false" />
@@ -47,7 +55,6 @@ function Home() {
                 </a>
             </section>
         </main>
-        <script src="../static/slider.js"></script>
         </div>
         </>
     );

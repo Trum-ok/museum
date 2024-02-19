@@ -1,6 +1,7 @@
 function Contacts() {
     return (
         <>
+        <div className="container">
         <main>
             <section className="contact-section">
                 <h1>Контакты</h1>
@@ -31,6 +32,7 @@ function Contacts() {
                 </a>
             </section>
         </main>
+        </div>
         </>
     );
   }
