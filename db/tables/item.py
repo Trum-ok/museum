@@ -56,7 +56,7 @@ class ExhibitsTable:
         return [
             Exhibit(
                 **{
-                    key: value if value is not None else ""  # Заменяем None на пустую строку
+                    key: value if value is not None else ""
                     for key, value in item.items()
                 },
                 inventory_number=InventoryNumber(
@@ -68,8 +68,6 @@ class ExhibitsTable:
             for item in exhibits
         ]
 
-
-    
 
     async def insert(self, exhibit: Exhibit) -> None:
         """Insert a new exhibit"""

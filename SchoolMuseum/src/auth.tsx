@@ -1,6 +1,8 @@
     import * as JWT  from 'jose';
 
     export function authenticate(login: string, password: string) {
+        // запрос к api
+        // и получение токена в случае успешной авторизации
         return fetch('http://localhost:8080/api/auth/', {
             method: 'POST',
             headers: {
@@ -10,13 +12,14 @@
         })
         .then(response => response.json())
         .then(data => {
-            const { token } = data; // Предполагается, что сервер возвращает токен
-            localStorage.setItem('token', token); // Сохраняем токен в локальном хранилище
+            const { token } = data;
+            localStorage.setItem('token', token);
             return token;
         });
     }
 
     export async function isAuthenticated() {
+        // проверка аутентификации юзера при попытке перехода на /admin/*
         const token = localStorage.getItem('token');
 
         if (!token) {
@@ -28,7 +31,6 @@
         );
 
         try {
-            // Проверяем токен с помощью Jose
             const result = await JWT.jwtVerify(token, secret);
             console.log('Token verification result:', result);
             return true;

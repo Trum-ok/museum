@@ -4,21 +4,28 @@ import asyncio
 import asyncpg
 
 from typing import List
+from datetime import datetime
 from dotenv import load_dotenv
 from cachetools import TTLCache
+
 from flask_cors import CORS
 from flask import Flask, request, jsonify
+from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 
 from db.main import Database
 from db.tables.item import Exhibit
-from dev.utils import cookie_gen
+from db.tables.events import EventType, Event
 
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
+JWT_SECRET_TOKEN = os.getenv("JWT_SECRET_TOKEN")
 
 app = Flask(__name__, template_folder='templates', static_folder="templates/static")
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+
+app.config['JWT_SECRET_KEY'] = JWT_SECRET_TOKEN
+JWTManager(app)
 
 
 CACHE_TTL_SECONDS = 60 * 5  # 5 минут
@@ -77,7 +84,7 @@ async def auth():
     
     if result:
         key = "_Yr019xMxv6ZM1TGTWMbgRK-W3RjdMYpdq_g9yHUw8jGWDlpc85gvm0ExXPNqNnVKNoQcB6OvIcPKCBtVrClsw"
-        token = jwt.encode({'login': data["login"]}, key=key, algorithm='HS256')
+        token = jwt.encode({'sub': data["login"]}, key=key, algorithm='HS256')
         print(token)
         return jsonify({"token": token}), 200
     else:
@@ -98,6 +105,34 @@ async def exhibits():
     data = await get_data()
     serialized_data = [exhibit.model_dump() for exhibit in data]
     return jsonify(serialized_data)
+
+
+@app.route("/api/add/", methods=["POST"])
+@jwt_required()
+async def add_item():
+    token = request.headers.get('Authorization').split(' ')[1]
+    secret_key = JWT_SECRET_TOKEN
+    try:
+        decoded_token = jwt.decode(token, secret_key, algorithms=['HS256'])
+        user_id = decoded_token.get('sub')
+        
+        new_exhibit = request.json
+        print(new_exhibit, user_id)
+        
+        pool = await main()
+        db = Database(pool)
+        event = Event(
+            type_=EventType.ADD,
+            date=datetime.now(),
+            admin=user_id
+        )
+        await db.events.insert(event)
+
+        return jsonify({'success': True, 'user_id': user_id}), 200
+    except jwt.ExpiredSignatureError:
+        return jsonify({'error': 'Token has expired'}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({'error': 'Invalid token'}), 401
 
 
 async def main() -> asyncpg.Pool:

@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import Pic from "../assets/img/logo_mus.png";
 
 function AdminNavbar() {
   const navigate = useNavigate();
@@ -13,9 +12,15 @@ function AdminNavbar() {
   return (
     <>
         <nav className='main-nav'>
+        <div className="logo-container">
+          <a href="/">
+            <img src="/logo_mus.png" alt="Наша Перловка" />
+          </a>
+        </div>
         <ul>
-            <li><NavLink to="/"><img src={Pic} alt="logo" style={{width: 40, height: 40}}/></NavLink></li>
             <li><button onClick={handleLogout}>Выход</button></li>
+            <li><NavLink to="/admin/add">Добавить</NavLink></li>
+            {/* <li><NavLink to="/admin/add">Р</NavLink></li> */}
         </ul>
     </nav>
     </>
