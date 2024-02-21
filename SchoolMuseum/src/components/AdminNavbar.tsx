@@ -1,7 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import Pic from "../assets/img/logo_mus.png";
 
-
 function AdminNavbar() {
   const navigate = useNavigate();
 
