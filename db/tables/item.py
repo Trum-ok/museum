@@ -1,22 +1,22 @@
-import asyncio
-from asyncpg import Pool, create_pool
+from pydantic import BaseModel, Field
+from asyncpg import Pool
 
 
-class InventoryNumber:
-    number: int = None
-    collection: str = None
-    fund: str = None
+class InventoryNumber(BaseModel):
+    number: int
+    collection: str
+    fund: str
 
 
-class Exhibit:
+class Exhibit(BaseModel):
     name: str
-    quantity: int = None
-    obtaining: str = None
-    discovery: str = None
-    description: str = None
-    assignment: str = None
-    inventory_number: InventoryNumber
-    image: str
+    quantity: int = Field(default="")
+    obtaining: str = Field(default="")
+    discovery: str = Field(default="")
+    description: str = Field(default="")
+    assignment: str = Field(default="")
+    inventory_number: InventoryNumber = None
+    image: str = Field(default="")
 
 
 class ExhibitsTable:
@@ -53,7 +53,22 @@ class ExhibitsTable:
             SELECT * FROM exhibits
             """
         )
-        return exhibits
+        return [
+            Exhibit(
+                **{
+                    key: value if value is not None else ""  # Заменяем None на пустую строку
+                    for key, value in item.items()
+                },
+                inventory_number=InventoryNumber(
+                    number=item["number"],
+                    collection=item["collection"],
+                    fund=item["fund"]
+                ) if all(item.get(key) for key in ("number", "collection", "fund")) else None
+            )
+            for item in exhibits
+        ]
+
+
     
 
     async def insert(self, exhibit: Exhibit) -> None:
@@ -70,8 +85,8 @@ class ExhibitsTable:
             exhibit.discovery,
             exhibit.description,
             exhibit.assignment,
-            exhibit.inventory_number.number,
-            exhibit.inventory_number.collection,
-            exhibit.inventory_number.fund,
+            exhibit.inventory_number.number if exhibit.inventory_number else None,
+            exhibit.inventory_number.collection if exhibit.inventory_number else None,
+            exhibit.inventory_number.fund if exhibit.inventory_number else None,
             exhibit.image
         )

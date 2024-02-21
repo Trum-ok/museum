@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import Slider from "../components/Slider"
+import Navbar from "../components/navbar"
 
 import sl1 from "../assets/img/sl1.webp"
 import sl2 from "../assets/img/sl2.webp"
@@ -18,6 +19,7 @@ function Home() {
 
     return (
         <>
+        <Navbar />
         <div className="container">
         <main>
             <section className="about_museum">

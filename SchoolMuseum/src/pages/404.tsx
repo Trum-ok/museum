@@ -1,6 +1,9 @@
+import Navbar from "../components/navbar";
+
 function NotFound() {
     return (
         <>
+        <Navbar />
         <div className="container">
             <main>
                 <h1 style={{fontSize: "7vw", margin: 0}}>404</h1>

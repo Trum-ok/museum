@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../components/navbar";
 
 interface Exhibit {
     name: string;
@@ -36,6 +37,8 @@ const Table = () => {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="container">
       <main>
         <section className="table">
@@ -81,6 +84,7 @@ const Table = () => {
         </section>
       </main>
     </div>
+    </>
   );
 };
 

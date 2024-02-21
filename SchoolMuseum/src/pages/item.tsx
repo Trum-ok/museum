@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../components/navbar";
 
 interface Exhibit {
     name: string;
@@ -7,6 +8,7 @@ interface Exhibit {
     discovery: string;
     description: string;
     assignment: string;
+    image: string;
     inventory_number: {
         number: number;
         collection: string;
@@ -41,6 +43,7 @@ function Item() {
     if (!exhibit) {
         return (
         <>
+            <Navbar />
             <div className="container">
                 <main>
                     <div className="back_button">
@@ -54,6 +57,7 @@ function Item() {
     
     return (
             <>
+            <Navbar />
             <div className="container">
                 <main>
                     <div className="back_button">

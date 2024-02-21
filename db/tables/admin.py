@@ -1,18 +1,33 @@
 # import asyncio
+from pydantic import BaseModel, Field
 from asyncpg import Pool, create_pool
+from typing import Optional
+
 from dev.exceptions import AdminNotFound
+from .admin_settings import AdminSettings, AdminSettingsTable
 
 
-class Admin:
+class Admin(BaseModel):
     login: str
-    password: str
+    password: str 
+    cookie: str = None
+
+    settings_db: AdminSettingsTable
+    """Admin settings database"""
+
+    internal_settings: Optional[AdminSettings]
+    """User settings"""
+
+    class Config:
+        arbitrary_types_allowed = True
 
 
 class AdminsTable:
     """Admins Table"""
 
-    def __init__(self, pool: Pool) -> None:
+    def __init__(self, pool: Pool, settings_db: AdminSettingsTable) -> None:
         self.pool = pool
+        self.settings_db = settings_db
 
 
     async def create(self) -> None:
@@ -21,7 +36,8 @@ class AdminsTable:
             """
         CREATE TABLE IF NOT EXISTS admins (
             login TEXT,
-            password INT
+            password TEXT,
+            cookie TEXT
         )
         """
         )
@@ -37,17 +53,19 @@ class AdminsTable:
         return [Admin(**admin) for admin in admins]
     
 
-    async def insert(self, admin: Admin) -> None:
+    async def insert(self, login: str = None, password: str = None, cookie: str = None) -> None:
         """Insert a new admin user"""
         await self.pool.execute(
             """
-            INSERT INTO adminss (login, password)
-            VALUES ($1, $2)
+            INSERT INTO admins (login, password,cookie)
+            VALUES ($1, $2, $3)
             ON CONFLICT DO NOTHING
             """,
-            admin.login,
-            admin.password
+            login,
+            password,
+            cookie
         )
+    
     
     async def delete(self, login: str) -> None:
         """Delete admin user"""
@@ -63,21 +81,29 @@ class AdminsTable:
             raise AdminNotFound(login)
         
 
+    async def check_lp(self, login: str, password: str) -> bool:
+        """Verifies correctness by login and password"""
+        return await self.pool.fetchval(
+            """
+            SELECT EXISTS(SELECT 1 FROM admins WHERE login = $1 and password = $2)
+            """,
+            login,
+            password,
+        )
 
-# async def main():
-#     DATABASE = 'exhibits'
-#     USER = 'postgres'
-#     PASSWORD = 'Aa01011991TrumaA'
-#     HOST = 'localhost'
-#     PORT = '5432'
+    async def check_cookie(self, cookie: str) -> bool:
+        """Verifies correctness by cookie"""
+        return await self.pool.fetchval(
+            """
+            SELECT EXISTS(SELECT 1 FROM admins WHERE cookie = $1)
+            """,
+            cookie,
+        )
+    
 
-#     pool = await create_pool(database=DATABASE, user=USER, password=PASSWORD, host=HOST, port=PORT)
-#     return pool
+    async def update(self, login: str, password: str = None, cookie: str = None) -> None:
+        ...
 
-# async def run_create():
-#     pool = await main()
-#     table = AdminsTable(pool)
-#     await table.create()
 
 # if __name__ == "__main__":
 #     asyncio.run(run_create())

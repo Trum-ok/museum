@@ -1,6 +1,9 @@
+import Navbar from "../components/navbar";
+
 function Contacts() {
     return (
         <>
+        <Navbar />
         <div className="container">
         <main>
             <section className="contact-section">
