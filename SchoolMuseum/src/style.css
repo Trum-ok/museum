@@ -166,6 +166,7 @@ hr {
 }
 
 
+
 .toggle {
     height: 3.5vw;
     width: 3.5vw;
@@ -530,6 +531,7 @@ max-width: 100%;
 } */
 
 /* @media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
     main {
         margin-left: 60px;
         margin-right: 60px;
@@ -557,6 +559,7 @@ max-width: 100%;
 } */
 
 /* @media screen and (max-width: 650px) {
+/* @media screen and (max-width: 650px) {
     header {
         padding: 30px;
     }
@@ -571,12 +574,17 @@ max-width: 100%;
     }
 } */
 /* 
+} */
+/* 
 @media screen and (max-width: 600px) {
 
     /*main {*/
     /*    margin-right: 30px;*/
     /*    margin-left: 30px;*/
     /*}*/
+    /* .default_menu { */
+        /* display: none; */
+    /* } */
     /* .default_menu { */
         /* display: none; */
     /* } */
@@ -590,6 +598,7 @@ max-width: 100%;
     /*.burger-menu-container {*/
     /*    display: block;*/
     /*}*/
+    /* .mobile-menu {
     /* .mobile-menu {
         display: block;
     } */ 
@@ -610,7 +619,9 @@ max-width: 100%;
     /*        background-color: var(--bg-300);*/
     /*    }*/
 /* } */
+/* } */
 
+/* @media screen and (max-width: 450px) {
 /* @media screen and (max-width: 450px) {
     header {
         padding: 20px;
@@ -669,10 +680,14 @@ max-width: 100%;
 ::-webkit-scrollbar {
     width: 8px;
     background-color: var(--primary-200);
+    width: 8px;
+    background-color: var(--primary-200);
 }
 
 
+
 ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-100);
     background-color: var(--primary-100);
 }
 
