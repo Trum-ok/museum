@@ -5,17 +5,17 @@ import asyncpg
 
 from typing import List
 from functools import wraps
-from datetime import datetime
 from dotenv import load_dotenv
 from cachetools import TTLCache
 
 from flask_cors import CORS
 from flask import Flask, request, jsonify
-from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager
 
-from db.main import Database
+from db.main import Database, Contacts
 from db.tables.item import Exhibit, ExhibitColumns
 from db.tables.events import EventType, Event
+from db.tables.contacts import Info
 
 
 load_dotenv()
@@ -23,16 +23,29 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 JWT_SECRET_TOKEN = os.getenv("JWT_SECRET_TOKEN")
 
 app = Flask(__name__, template_folder='templates', static_folder="templates/static")
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}}, supports_credentials=True)  # noqa: E501
 
 app.config['JWT_SECRET_KEY'] = JWT_SECRET_TOKEN
 JWTManager(app)
 
 
-CACHE_TTL_SECONDS = 60 * 5  # 5 минут
-ADMIN_CACHE_TTL_SECONDS = 60  # 1 минутa
+CACHE_TTL_SECONDS = 60
+ADMIN_CACHE_TTL_SECONDS = 60
+CONTACTS_CACHE_TTL_SECONDS = 60 * 10
 exhibits_cache = TTLCache(maxsize=256, ttl=CACHE_TTL_SECONDS)
 admins_cache = TTLCache(maxsize=128, ttl=ADMIN_CACHE_TTL_SECONDS)
+contacts_cache = TTLCache(maxsize=512, ttl=CONTACTS_CACHE_TTL_SECONDS)
+
+
+def get_contact_data() -> Info:
+    if 'contacts' in contacts_cache:
+        return contacts_cache['contacts']
+    
+    db =  Contacts()
+    data = db.contacts.load_data_from_json()
+
+    contacts_cache['contacts'] = data
+    return data
 
 
 def requires_token(f):
@@ -57,8 +70,8 @@ def requires_token(f):
 
 async def get_data() -> List[Exhibit]:
     """Retrieving the list of exhibits from cache or database."""
-    # if 'exhibits' in exhibits_cache:
-    #     return exhibits_cache['exhibits']
+    if 'exhibits' in exhibits_cache:
+        return exhibits_cache['exhibits']
 
     pool = await main()
     async with pool:
@@ -106,6 +119,7 @@ async def check_for_updates():
 
 @app.before_request
 async def startup():
+    get_contact_data()
     await asyncio.create_task(get_data())
     asyncio.create_task(check_for_updates())
 
@@ -127,7 +141,7 @@ async def auth():
         result = await db.admins.check_lp(data["login"], data["password"])
     
     if result:
-        token = jwt.encode({'sub': data["login"]}, key=JWT_SECRET_TOKEN, algorithm='HS256')
+        token = jwt.encode({'sub': data["login"]}, key=JWT_SECRET_TOKEN, algorithm='HS256')  # noqa: E501
         return jsonify({"token": token}), 200
     else:
         return jsonify({"error": "Invalid credentials"}), 401
@@ -146,6 +160,12 @@ async def exhibits():
     data = await get_data()
     serialized_data = [exhibit.model_dump() for exhibit in data if exhibit.visible]
     return jsonify(serialized_data), 200
+
+
+@app.route("/api/contacts/", methods=['GET'])
+def contacts_info():
+    data = get_contact_data()
+    return jsonify(data.model_dump()), 200
 
 
 @app.route("/api/adm/", methods=['GET'])    
@@ -198,10 +218,10 @@ async def add_item(token_valid, token):
             await db.events.insert(event)
 
 
-            return jsonify({'success': True, 'user_id': user_id, 'exhibit': new_exhibit}), 200
+            return jsonify({'success': True, 'user_id': user_id, 'exhibit': new_exhibit}), 200  # noqa: E501
         except Exception as e:
             print(e)
-            return jsonify({"error": "К сожалению сервер не смог обработать ваш запрос"}), 401
+            return jsonify({"error": "К сожалению сервер не смог обработать ваш запрос"}), 401  # noqa: E501
     return jsonify({"error": "Unauthorized"}), 401
 
 
@@ -228,7 +248,7 @@ async def hide_or_unhide(token_valid, token):
             db = Database(pool)
             await db.events.insert(event)
             await db.items.update(exhibit.id, visible=not visible)
-        return jsonify({'msg': f"{visible} -> {not visible}", 'visible': not visible}), 200
+        return jsonify({'msg': f"{visible} -> {not visible}", 'visible': not visible}), 200  # noqa: E501
     return jsonify({"error": "Unauthorized"}), 401
     
  
@@ -258,7 +278,6 @@ async def delete_exhibit(token_valid, token):
     return jsonify({"error": "Unauthorized"}), 401
 
 
-
 @app.route("/api/restore/", methods=["POST"])
 @requires_token
 async def restore_exhibit(token_valid, token):
@@ -277,6 +296,29 @@ async def restore_exhibit(token_valid, token):
             await db.events.insert(event=event)
             await db.items.insert(exhibit)
             await db.deleted.delete(exhibit.id)
+
+        return jsonify({"msg": "ok"}), 200
+    return jsonify({"error": "Unauthorized"}), 401
+
+
+@app.route("/api/edit_pages/contacts/", methods=["POST"])
+@requires_token
+async def edit_pages(token_valid, token):
+    if token_valid:
+        user_id = token.get('sub')
+        print(request.json)
+
+        event = Event(
+            type_=EventType.C_EDIT,
+            admin=user_id
+        )
+
+        pool = await main()
+        async with pool:
+            db = Database(pool)
+            cdb = Contacts()
+            await db.events.insert(event=event)
+            cdb.contacts.update(request.json)
 
         return jsonify({"msg": "ok"}), 200
     return jsonify({"error": "Unauthorized"}), 401
@@ -301,6 +343,8 @@ async def setup_db():
     async with pool:
         db = Database(pool)
         await db.create()
+    cdb = Contacts()
+    cdb.create()
 
 
 if __name__ == '__main__':    

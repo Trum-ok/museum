@@ -9,6 +9,8 @@ class EventType:
     RESTORE = "Restore"
     HIDE = "Hide"
     UNHIDE = "Unhide"
+    C_EDIT = "Edit (contacts)"
+    M_EDIT = "Edit (main)"
     
 
 class Event(BaseModel):

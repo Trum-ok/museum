@@ -1,6 +1,5 @@
-# import asyncio
 from pydantic import BaseModel, Field
-from asyncpg import Pool, create_pool
+from asyncpg import Pool
 from typing import Optional
 
 from dev.exceptions import AdminNotFound
@@ -53,7 +52,7 @@ class AdminsTable:
         return [Admin(**admin) for admin in admins]
     
 
-    async def insert(self, login: str = None, password: str = None, cookie: str = None) -> None:
+    async def insert(self, login: str = None, password: str = None, cookie: str = None) -> None:  # noqa: E501
         """Insert a new admin user"""
         await self.pool.execute(
             """
@@ -101,9 +100,5 @@ class AdminsTable:
         )
     
 
-    async def update(self, login: str, password: str = None, cookie: str = None) -> None:
+    async def update(self, login: str, password: str = None, cookie: str = None) -> None:  # noqa: E501
         ...
-
-
-# if __name__ == "__main__":
-#     asyncio.run(run_create())

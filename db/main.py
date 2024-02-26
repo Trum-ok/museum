@@ -29,3 +29,17 @@ class Database:
         await self.admins.create()
         await self.events.create()
         await self.deleted.create()
+
+
+class Contacts:
+    """Contacts and work time"""
+
+    def __init__(self) -> None:
+        self.contacts = tables.ContactsTable()
+
+
+    def create(self) -> None:
+        """
+        Create contacts file.
+        """
+        self.contacts.create()

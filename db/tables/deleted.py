@@ -53,7 +53,7 @@ class DeletedExhibitsTable:
                     number=item["number"],
                     collection=item["collection"],
                     fund=item["fund"]
-                ) if all(item.get(key) for key in ("number", "collection", "fund")) else None
+                ) if all(item.get(key) for key in ("number", "collection", "fund")) else None  # noqa: E501
             )
             for item in exhibits
         ]
@@ -66,7 +66,7 @@ class DeletedExhibitsTable:
             INSERT INTO deleted_exhibits (name, quantity, obtaining, discovery, description, assignment, number, collection, fund, image, visible)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
             ON CONFLICT DO NOTHING
-            """,
+            """,  # noqa: E501
             exhibit.name,
             exhibit.quantity,
             exhibit.obtaining,

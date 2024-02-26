@@ -22,6 +22,7 @@ function AdminNavbar() {
             <li><NavLink to="/admin/add">Добавить</NavLink></li>
             <li><NavLink to="/admin/recently-deleted">Недавно удаленные</NavLink></li>
             <li><NavLink to="/admin/events">История</NavLink></li>
+            <li><NavLink to="/admin/edit-page">Редактирование</NavLink></li>
         </ul>
     </nav>
     </>

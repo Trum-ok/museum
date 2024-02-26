@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
 import AdminNavbar from '../components/AdminNavbar';
+import AdminBackButton from '../components/AdminBackButton';
 import DeletedTable from "../components/DeletedTable";
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function DeletedItems() {
@@ -10,9 +10,7 @@ function DeletedItems() {
         <ToastContainer position="bottom-right" draggable newestOnTop/>
         <AdminNavbar />
         <div className="container">
-            <div className="back_button">
-                <a href="/admin/">&lt; назад</a>
-            </div>
+            <AdminBackButton />
             <h1>Недавно удаленные</h1>
             <DeletedTable />
         </div>

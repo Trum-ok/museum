@@ -16,7 +16,10 @@ import Admin from "./pages/admin";
 import AddExhibit from "./pages/add_exhibit";
 import DeletedItems from "./pages/deleted_items";
 import Events from "./pages/events";
+import Edit from "./pages/edit";
+import EditContactsPage from "./pages/edit_contacts";
 import { isAuthenticated } from './auth';
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(true);
@@ -46,6 +49,8 @@ function App() {
                 <Route path="/admin/add" element={<AddExhibit />} />
                 <Route path="/admin/recently-deleted" element={<DeletedItems />}/>
                 <Route path="/admin/events" element={<Events />}/>
+                <Route path="/admin/edit-page" element={<Edit />}/>
+                <Route path="/admin/edit-page/contacts" element={<EditContactsPage />}/>
               </>
             ) : (
               <Route path="/admin/*" element={<Navigate to="/login" />} />

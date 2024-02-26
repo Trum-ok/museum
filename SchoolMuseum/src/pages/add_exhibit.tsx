@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AdminNavbar from '../components/AdminNavbar';
+import AdminBackButton from '../components/AdminBackButton';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Exhibit } from '../components/ExhibitInterface';
@@ -71,9 +72,7 @@ function AddExhibit() {
       <AdminNavbar />
       <ToastContainer position="bottom-right" draggable newestOnTop/>
       <div className="container">
-        <div className="back_button">
-          <a href="/admin/">&lt; назад</a>
-        </div>
+        <AdminBackButton />
         <h1>Добавить экспонат</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-row">

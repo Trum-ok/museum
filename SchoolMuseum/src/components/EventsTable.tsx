@@ -28,7 +28,7 @@ function EventsTable() {
                 },
             });
                 const jsonData = await response.json();
-                setData(jsonData);
+                setData(jsonData.reverse());
             } catch (error) {
                 toast.error('Ошибка при получении данных');
                 console.error('Ошибка при получении данных:', error);
