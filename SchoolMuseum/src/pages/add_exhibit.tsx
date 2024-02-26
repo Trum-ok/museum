@@ -3,26 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import AdminNavbar from '../components/AdminNavbar';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Exhibit } from '../components/ExhibitInterface';
 
-
-// Интерфейс Exhibit
-interface Exhibit {
-  name: string;
-  quantity: number;
-  obtaining: string;
-  discovery: string;
-  description: string;
-  assignment: string;
-  image: string;
-  inventory_number: {
-    number: number;
-    collection: string;
-    fund: string;
-  };
-}
 
 function AddExhibit() {
   const [formData, setFormData] = useState<Exhibit>({
+    id: 0,
     name: '',
     quantity: 0,
     obtaining: '',
@@ -35,9 +21,10 @@ function AddExhibit() {
       fund: '',
     },
     image: '',
+    visible: true,
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -50,7 +37,6 @@ function AddExhibit() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      // Получение JWT токена из localStorage
       const token = localStorage.getItem('token');
       console.log(token)
 
@@ -58,7 +44,7 @@ function AddExhibit() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Добавление JWT токена в заголовок Authorization
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       });
@@ -85,6 +71,9 @@ function AddExhibit() {
       <AdminNavbar />
       <ToastContainer position="bottom-right" draggable newestOnTop/>
       <div className="container">
+        <div className="back_button">
+          <a href="/admin/">&lt; назад</a>
+        </div>
         <h1>Добавить экспонат</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
@@ -163,7 +152,15 @@ function AddExhibit() {
                   id="inventory_number"
                   name="inventory_number"
                   value={formData.inventory_number.number}
-                  onChange={handleChange}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      inventory_number: {
+                        ...formData.inventory_number,
+                        number: parseInt(e.target.value), // Ensure to parse the value to integer
+                      },
+                    })
+                  }
                 />
               </div>
               <div className="form-group">

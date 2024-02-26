@@ -20,7 +20,8 @@ function AdminNavbar() {
         <ul>
             <li><button onClick={handleLogout}>Выход</button></li>
             <li><NavLink to="/admin/add">Добавить</NavLink></li>
-            {/* <li><NavLink to="/admin/add">Р</NavLink></li> */}
+            <li><NavLink to="/admin/recently-deleted">Недавно удаленные</NavLink></li>
+            <li><NavLink to="/admin/events">История</NavLink></li>
         </ul>
     </nav>
     </>

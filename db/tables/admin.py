@@ -8,9 +8,9 @@ from .admin_settings import AdminSettings, AdminSettingsTable
 
 
 class Admin(BaseModel):
-    login: str
-    password: str 
-    cookie: str = None
+    login: str = Field(default="")
+    password: str = Field(default="")
+    cookie: str = Field(default="")
 
     settings_db: AdminSettingsTable
     """Admin settings database"""
@@ -20,7 +20,7 @@ class Admin(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True
-
+        
 
 class AdminsTable:
     """Admins Table"""

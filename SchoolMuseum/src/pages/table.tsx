@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
+import { Exhibit } from "../components/ExhibitInterface";
 
-interface Exhibit {
-    name: string;
-    quantity: number;
-    obtaining: string;
-    discovery: string;
-    description: string;
-    assignment: string;
-    inventory_number: {
-      number: number;
-      collection: string;
-      fund: string;
-    };
-}
 
 const Table = () => {
   const [data, setData] = useState<Exhibit[]>([]);
 
   useEffect(() => {
-    // Метод для получения данных из API
     const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:8080/api/exhibits');
@@ -60,7 +47,6 @@ const Table = () => {
               {data.map((row, index) => (
                 <tr key={index}>
                   <td>
-                    {/* <a href={`http://localhost:8080/api/item?value=${index + 1}/`}>{row.name}</a> */}
                     <a href={`/tables/item?value=${index + 1}/`}>{row.name}</a>
                   </td>
                   <td>{row.quantity}</td>

@@ -14,6 +14,8 @@ import NotFound from "./pages/404";
 import Login from "./pages/login";
 import Admin from "./pages/admin";
 import AddExhibit from "./pages/add_exhibit";
+import DeletedItems from "./pages/deleted_items";
+import Events from "./pages/events";
 import { isAuthenticated } from './auth';
 
 function App() {
@@ -42,6 +44,8 @@ function App() {
               <>
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="/admin/add" element={<AddExhibit />} />
+                <Route path="/admin/recently-deleted" element={<DeletedItems />}/>
+                <Route path="/admin/events" element={<Events />}/>
               </>
             ) : (
               <Route path="/admin/*" element={<Navigate to="/login" />} />

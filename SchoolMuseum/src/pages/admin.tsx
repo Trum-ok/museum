@@ -1,17 +1,19 @@
 import AdminNavbar from '../components/AdminNavbar';
-// import { toast, ToastContainer } from 'react-toastify';
+import AdminTable from '../components/AdminTable';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Admin() {
   return (
     <>
+    <ToastContainer position="bottom-right" draggable newestOnTop/>
     <AdminNavbar />
-    {/* <ToastContainer /> */}
     <div className="container">
         <header>
             <h1>Панель управления музеем</h1>
         </header>
         <main>
-            <p>text</p>
+            <AdminTable />
         </main>
     </div>
     </>

@@ -1,41 +1,10 @@
-from pydantic import BaseModel, Field
 from asyncpg import Pool
 
-
-class InventoryNumber(BaseModel):
-    number: int
-    collection: str
-    fund: str
+from db.tables.item import Exhibit, InventoryNumber
 
 
-class Exhibit(BaseModel):
-    id: int
-    name: str
-    quantity: int = Field(default="")
-    obtaining: str = Field(default="")
-    discovery: str = Field(default="")
-    description: str = Field(default="")
-    assignment: str = Field(default="")
-    inventory_number: InventoryNumber = None
-    image: str = Field(default="")
-    visible: bool = Field(default=True)
-
-
-class ExhibitColumns:
-    ID = "id"
-    NAME = "name",
-    QUANTITY = "quantity",
-    OBTAINING = "obtaining",
-    DISCOVERY = "discovery",
-    DESCRIPTION = "description",
-    ASSIGNMENT = "assignment",
-    INVENTORY = ["number", "collection", "fund"],
-    IMAGE = "image",
-    VISIBLE = "visible"
-
-
-class ExhibitsTable:
-    """Exhibits Table"""
+class DeletedExhibitsTable:
+    """Deleted Exhibits Table"""
 
     def __init__(self, pool: Pool) -> None:
         self.pool = pool
@@ -45,7 +14,7 @@ class ExhibitsTable:
         """Create the table"""
         await self.pool.execute(
             """
-        CREATE TABLE IF NOT EXISTS exhibits (
+        CREATE TABLE IF NOT EXISTS deleted_exhibits (
             id SERIAL PRIMARY KEY,
             name TEXT,
             quantity INT,
@@ -57,19 +26,23 @@ class ExhibitsTable:
             collection TEXT,
             fund TEXT,
             image TEXT,
-            visible BOOL NOT NULL DEFAULT TRUE
+            visible BOOL
         )
         """
         )
 
 
     async def get_all(self) -> list[Exhibit]:
-        """Get all exhibits"""
+        """Get all deleted exhibits"""
         exhibits = await self.pool.fetch(
             """
-            SELECT * FROM exhibits
+            SELECT * FROM deleted_exhibits
             """
         )
+
+        if not exhibits:
+            return []
+
         return [
             Exhibit(
                 **{
@@ -87,10 +60,10 @@ class ExhibitsTable:
 
 
     async def insert(self, exhibit: Exhibit) -> None:
-        """Insert a new exhibit"""
+        """Insert a deleted exhibits"""
         await self.pool.execute(
             """
-            INSERT INTO exhibits (name, quantity, obtaining, discovery, description, assignment, number, collection, fund, image, visible)
+            INSERT INTO deleted_exhibits (name, quantity, obtaining, discovery, description, assignment, number, collection, fund, image, visible)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
             ON CONFLICT DO NOTHING
             """,
@@ -106,34 +79,13 @@ class ExhibitsTable:
             exhibit.image,
             exhibit.visible
         )
-    
 
-    async def get(self, name: str, columns: list) -> list:
-        exhibit = await self.pool.fetchval(
-            "SELECT " 
-            + ", ".join(column for column in columns)
-            + " FROM exhibits"
-            + " WHERE name = $1",
-            name
-        )
-        return exhibit
-
-
-    async def update(self, id: int, **kwargs) -> None:
-        await self.pool.execute(
-            "UPDATE exhibits SET "
-            + ", ".join(f"{key} = ${i}" for i, key in enumerate(kwargs, 2))
-            + " WHERE id = $1",
-            id,
-            *kwargs.values(),
-        )
-    
 
     async def delete(self, id: int) -> None:
-        """Delete an exhibit from exhibits table by id"""
+        """Delete an exhibit from recently deleted exhibits table by id"""
         await self.pool.execute(
             """
-            DELETE FROM exhibits WHERE id = $1
+            DELETE FROM deleted_exhibits WHERE id = $1
             """,
             id
         )

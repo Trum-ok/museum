@@ -13,9 +13,11 @@ class Database:
         self.items = tables.ExhibitsTable(self.pool)
         """Exhibits"""
         self.admins= tables.AdminsTable(self.pool, self.settings)
-        """Admin"""
+        """Admins"""
         self.events = tables.EventsTable(self.pool)
         """Events"""
+        self.deleted = tables.DeletedExhibitsTable(self.pool)
+        """Recently removed exhibits"""
 
 
     async def create(self) -> None:
@@ -26,3 +28,4 @@ class Database:
         await self.settings.create()
         await self.admins.create()
         await self.events.create()
+        await self.deleted.create()
