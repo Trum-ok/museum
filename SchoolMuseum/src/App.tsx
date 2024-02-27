@@ -18,6 +18,7 @@ import DeletedItems from "./pages/deleted_items";
 import Events from "./pages/events";
 import Edit from "./pages/edit";
 import EditContactsPage from "./pages/edit_contacts";
+import EditMainPage from "./pages/edit_main";
 import { isAuthenticated } from './auth';
 
 
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/admin/events" element={<Events />}/>
                 <Route path="/admin/edit-page" element={<Edit />}/>
                 <Route path="/admin/edit-page/contacts" element={<EditContactsPage />}/>
+                <Route path="/admin/edit-page/main" element={<EditMainPage />}/>
               </>
             ) : (
               <Route path="/admin/*" element={<Navigate to="/login" />} />

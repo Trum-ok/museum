@@ -4,8 +4,8 @@
     "hours": {
         "fri": "xx:xx - xx:xx",
         "mon": "10:00 - xx:xx",
-        "sat": "xx:xx - xx:xx",
-        "sun": "xx:xx - xx:xx",
+        "sat": "выходной",
+        "sun": "выходной",
         "thu": "xx:xx - xx:xx",
         "tue": "xx:xx - xx:xx",
         "wed": "xx:xx - xx:xx"

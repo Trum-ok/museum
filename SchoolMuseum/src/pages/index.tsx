@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import Slider from "../components/Slider"
 import Navbar from "../components/navbar"
 
+import main_p from "../assets/img/main_fr_1.webp"
 import sl1 from "../assets/img/sl1.webp"
 import sl2 from "../assets/img/sl2.webp"
 import sl3 from "../assets/img/sl3.webp"
@@ -32,7 +33,7 @@ function Home() {
                             <br /><br />&nbsp;&nbsp;&nbsp;&nbsp;В музее также проводятся различные образовательные программы и мероприятия, такие как лекции, экскурсии, мастер-классы, конкурсы и выставки. Они позволяют учащимся расширить свои знания о истории родного города, развивать интерес к историческому наследию и патриотическому воспитанию.
                             <br /><br />&nbsp;&nbsp;&nbsp;&nbsp;Школьный музей "Наша Перловка" является важным культурным и образовательным центром для учащихся и педагогов школы, а также для местных жителей и гостей города Мытищи. Он способствует сохранению и продвижению исторического наследия города и его учреждений, а также развитию интереса к истории и культуре среди молодого поколения.
                     </p>
-                    <img src="../static/img/main_fr_1.webp" alt="" />
+                    <img src={main_p} alt="" />
                 </div>
             </section>
             <hr style={{border: "2px", color: "#AB6C3C"}} />

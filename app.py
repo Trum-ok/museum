@@ -152,7 +152,9 @@ def item_by_number():
     data = asyncio.run(get_data())
     loop_index = request.args.get('value')
     i = int(loop_index.replace("/", ""))
-    return jsonify(data[i-1].model_dump())
+    if data[i-1].visible:
+        return jsonify(data[i-1].model_dump()), 200
+    return jsonify({"error": "Экспонат не найден или скрыт"}), 404
 
 
 @app.route("/api/exhibits/", methods=['GET'])
